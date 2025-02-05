@@ -1,6 +1,10 @@
 {
     "urls": [
         {
+            "url": "https://cdn.jsdelivr.net/gh/2hacc/TVBox@main/oktv.json",
+            "name": "ok影视"
+        },
+        {
             "url": "https://cyao2q.github.io/files/n.json",
             "name": "n"
         },
