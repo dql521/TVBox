@@ -1,0 +1,8 @@
+{
+"发布页": "https://www.gkan.net/#section1，jkan.app",
+"搜索url":"https://www.hitv.app/search/-------------.html?wd={wd}",
+"请求头": "手机",
+"主页url":"https://www.hitv.app/ ",
+"分类":"电影$1#连续剧$2#综艺$3#动漫$4#儿童剧$58",
+"分类url": "https://www.hitv.app/show/{cateId}-{area}--{class}-----{catePg}---{year}.html"
+}

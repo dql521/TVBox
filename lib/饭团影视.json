@@ -1,0 +1,10 @@
+{
+    
+    "作者":"老天师",
+    "站名":"饭团影视",
+    "主页url":"http://www.bzpos.com/",
+    "年份":"2026-2016",
+    "类型":"动作片$s/dongzuopian#喜剧片$s/xijupian#爱情片$s/aiqingpian#科幻片$s/kehuanpian#恐怖片$s/kongbupian#剧情片$s/juqingpian#战争片$s/zhanzhengpian",
+    "分类": "电影&电视剧&综艺&动漫",
+    "分类值": "t/dianying&t/lianxuju&t/zongyi&t/dongman",
+    "分类url": "http://www.bzpos.com/{cateId}/area/{area}/page/{catePg}/year/{year}.html"}

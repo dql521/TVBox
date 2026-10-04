@@ -1,0 +1,20 @@
+{
+
+"站名":"欧乐影视快",
+"时间":"20260305",
+"数组": "public-list-exp\"&&public-list-box[包含:video#src=]",
+"请求头":"手机",
+"图片":"data-src=\"&&\"",
+"标题":"title=\"&&\"",
+"简介":"description\" content=\"&&\"",
+//"链接":"href=\"&&\"[替换:video>>video-play]+-1-1",
+"链接":"href=\"&&\"",
+
+"搜索url": "https://www.oleov.com/search?wd={wd}",
+
+"主页url":"https://www.oleov.com/",
+"分类": "电影&剧集&动漫&综艺&短剧",
+"分类值": "dianying&dianshiju&dongman&zongyi&duanju",
+"分类url": "https://www.oleov.com/type/{cateId}/?year={year}&region={area}&class={class}&page={catePg}"
+
+}

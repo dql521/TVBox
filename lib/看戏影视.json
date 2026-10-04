@@ -1,0 +1,16 @@
+{
+    "作者":"20260317",
+    "站名":"看戏影视--看戏网--看戏影院https://www.wokanxi.com/  https://www.kanxis.com/ https://www.kanxiya.com/  www.wokanxi.com/  www.kanxiwa.com/  www.ikanxi.com/  www.kanxixi.com",
+ 	"数组": "<li>&&</li>",
+	"图片": "data-original=\"&&\"",
+    "标题": "title=\"&&\"",
+	"副标题": "text-right\">&&</span>",
+    "链接": "href=\"&&\"",
+
+    "搜索url":"https://www.kxyes.com/search/{wd}--------{catePg}---{year}.html",
+    "搜索模式":"1",
+	
+    "分类url":"https://www.kxyes.com/tags/{cateId}--------{catePg}---{year}.html;;",
+    
+    "分类": "电影$1#电视剧$2#综艺$3#动漫$4"
+}

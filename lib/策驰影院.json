@@ -1,0 +1,23 @@
+{
+//注意：图片加载有bug 就这样吧
+"作者":"御清弦",
+"站名":"策驰影院",
+"主页url":"https://www.erkys.com/",
+"简介":"提醒您请勿相信广告，以免上当！+description\" content=\"&&\">", 
+"搜索url":"https://www.erkys.com/vodsearch/_____________.html?wd={wd}&submit=",
+"搜索后缀":"/video/",
+"搜索模式":"1",
+"搜索数组":"class=\"stui-vodlist__thumb&&</li>",
+"搜索图片":"data-original=\"&&\"",
+"搜索图片前缀":"https://www.erkys.com",
+"搜索标题":"title=\"&&\"",
+"搜索链接":"href=\"&&\"",
+"搜索链接前缀": "https://www.erkys.com",
+"搜索副标题":"pic-text text-right\">&&</span>",
+
+"分类": "电影&电视剧&动漫&综艺&短剧",
+"分类值": "1&2&3&4&5",
+
+"分类url": "https://www.erkys.com/type/{cateId}/page/{catePg}.html[https://www.erkys.com/type/{cateId}.html]"
+//看剧网http://waps.bjzknj.com/
+}

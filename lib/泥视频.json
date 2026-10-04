@@ -1,0 +1,19 @@
+{
+
+"作者":"20260406",
+"站名":"泥视频",
+"主页url":"https://www.nivod.cc",
+"数组":"<li&&</li>[不包含:泥视频]",
+"图片": "默认--https://www.nivod.cc+url(&&)||首页--src=\"&&\"",
+"标题":"title=\"&&\"",
+"链接":"href=\"&&\"",
+
+"搜索url":"https://www.nivod.cc/search_x.html?keyword={wd}&sign=c8ec6c33",
+"搜索模式":"1",
+
+"倒序":"1",
+"分类url": "https://www.nivod.cc/filter.html?channel={cateId}&region={area}&showtype={class}&year={year}&page={catePg}",
+"分类": "电影$movie#电视剧$tv#综艺$show#动漫$anime"},
+
+"header": {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0"}
+}

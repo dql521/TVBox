@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zaka 订阅线路体检</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#0d1117;--card:#161b22;--line:#30363d;--fg:#e6edf3;--dim:#8b949e;--ok:#3fb950;--bad:#f85149;--warn:#d29922;--acc:#58a6ff}
+  body{background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;padding:32px 20px;max-width:900px;margin:0 auto}
+  h1{font-size:22px;margin-bottom:6px}
+  .sub{color:var(--dim);font-size:13px;margin-bottom:22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:16px}
+  label{display:block;font-size:12px;color:var(--dim);margin-bottom:6px}
+  input{width:100%;background:#0d1117;border:1px solid var(--line);color:var(--fg);border-radius:6px;padding:9px 11px;font-size:14px;font-family:ui-monospace,Menlo,monospace}
+  input:focus{outline:none;border-color:var(--acc)}
+  .row{display:grid;grid-template-columns:1fr 1fr 110px;gap:12px}
+  button{margin-top:16px;width:100%;background:var(--acc);color:#08121f;border:0;border-radius:6px;padding:12px;font-size:15px;font-weight:600;cursor:pointer}
+  button:hover{filter:brightness(1.1)}
+  button:disabled{opacity:.5;cursor:default}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{text-align:left;color:var(--dim);font-weight:500;font-size:12px;padding:7px 8px;border-bottom:1px solid var(--line)}
+  td{padding:9px 8px;border-bottom:1px solid #21262d;vertical-align:middle}
+  tr.best td{background:#0f2d1a}
+  code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--acc);word-break:break-all}
+  .pill{display:inline-block;padding:1px 8px;border-radius:20px;font-size:12px;font-weight:600}
+  .o{background:rgba(63,185,80,.16);color:var(--ok)}
+  .x{background:rgba(248,81,73,.16);color:var(--bad)}
+  .w{background:rgba(210,153,34,.16);color:var(--warn)}
+  .copy{background:#21262d;color:var(--fg);border:1px solid var(--line);border-radius:5px;padding:4px 10px;font-size:12px;cursor:pointer;width:auto;margin:0}
+  .copy:hover{background:#30363d}
+  .addr{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #21262d}
+  .addr code{flex:1}
+  .note{color:var(--dim);font-size:12.5px;margin-top:12px;line-height:1.7}
+  .hide{display:none}
+</style>
+</head>
+<body>
+<h1>Zaka 订阅 · 线路体检</h1>
+<div class="sub">在你自己的网络环境下实测每条镜像线路能不能通。只读检测，不改任何东西。</div>
+
+<div class="card">
+  <div class="row">
+    <div><label>GitHub 用户名</label><input id="u" placeholder="例如 zhangsan"></div>
+    <div><label>仓库名</label><input id="r" placeholder="例如 okys"></div>
+    <div><label>分支</label><input id="b" value="main"></div>
+  </div>
+  <button id="go">开始测速</button>
+</div>
+
+<div class="card hide" id="resCard">
+  <table>
+    <thead><tr><th style="width:96px">线路</th><th style="width:86px">结果</th><th style="width:80px">耗时</th><th>地址</th></tr></thead>
+    <tbody id="tb"></tbody>
+  </table>
+  <div class="note" id="note"></div>
+</div>
+
+<div class="card hide" id="addrCard">
+  <div style="font-size:14px;font-weight:600;margin-bottom:4px">可直接用的订阅地址</div>
+  <div class="sub" style="margin-bottom:8px">挑一条通得快的填进壳里（设置 → 配置地址）</div>
+  <div id="addrs"></div>
+  <div class="note">
+    首选「镜像多仓版」——一个地址里装下了所有线路，某条挂了在壳里切仓就能接着用，不用来回改地址。<br>
+    壁纸清单：把 <code>okys-mirror-xxx.json</code> 换掉最后一段文件名，见下表。
+  </div>
+</div>
+
+<script>
+const LINES = [
+  ['jsd',      'jsDelivr CDN',   u=>`https://cdn.jsdelivr.net/gh/${u.u}/${u.r}@${u.b}/`],
+  ['fastly',   'jsDelivr Fastly',u=>`https://fastly.jsdelivr.net/gh/${u.u}/${u.r}@${u.b}/`],
+  ['gcore',    'jsDelivr Gcore', u=>`https://gcore.jsdelivr.net/gh/${u.u}/${u.r}@${u.b}/`],
+  ['testingcf','jsDelivr CF',    u=>`https://testingcf.jsdelivr.net/gh/${u.u}/${u.r}@${u.b}/`],
+  ['ghproxy',  'gh-proxy.com',   u=>`https://gh-proxy.com/https://raw.githubusercontent.com/${u.u}/${u.r}/${u.b}/`],
+  ['ghpnet',   'ghproxy.net',    u=>`https://ghproxy.net/https://raw.githubusercontent.com/${u.u}/${u.r}/${u.b}/`],
+  ['ghfast',   'ghfast.top',     u=>`https://ghfast.top/https://raw.githubusercontent.com/${u.u}/${u.r}/${u.b}/`],
+  ['bgh',      'bgithub',        u=>`https://raw.bgithub.xyz/${u.u}/${u.r}/${u.b}/`],
+  ['gitproxy', 'gitproxy.click', u=>`https://gitproxy.click/https://raw.githubusercontent.com/${u.u}/${u.r}/${u.b}/`],
+  ['raw',      '官方 raw',        u=>`https://raw.githubusercontent.com/${u.u}/${u.r}/${u.b}/`],
+];
+const PROBE = 'okys-multi.json';   // 用最小的那份配置探路，1.7KB
+
+document.getElementById('u').value = localStorage.getItem('zg_u') || '';
+document.getElementById('r').value = localStorage.getItem('zg_r') || '';
+
+async function probe(url, ms){
+  const ctl = new AbortController();
+  const tm = setTimeout(()=>ctl.abort(), ms);
+  const t0 = performance.now();
+  try{
+    const resp = await fetch(url+'?_='+Date.now(), {signal: ctl.signal, cache:'no-store'});
+    clearTimeout(tm);
+    const txt = await resp.text();
+    const dt = Math.round(performance.now()-t0);
+    if(!resp.ok) return {st:'HTTP '+resp.status, ok:false, dt};
+    if(txt.trim().startsWith('{')) return {st:'通畅', ok:true, dt};
+    return {st:'内容异常', ok:false, dt, warn:true};
+  }catch(e){
+    // CORS 被挡但网络可能是通的，用 no-cors 再探一次
+    try{
+      const ctl2 = new AbortController();
+      const tm2 = setTimeout(()=>ctl2.abort(), ms);
+      await fetch(url+'?_='+Date.now(), {signal: ctl2.signal, mode:'no-cors', cache:'no-store'});
+      clearTimeout(tm2);
+      return {st:'可连(跨域受限)', ok:true, warn:true, dt: Math.round(performance.now()-t0)};
+    }catch(e2){
+      clearTimeout(tm);
+      return {st:'不通', ok:false, dt: Math.round(performance.now()-t0)};
+    }
+  }
+}
+
+document.getElementById('go').onclick = async ()=>{
+  const btn = document.getElementById('go');
+  const u = document.getElementById('u').value.trim();
+  const r = document.getElementById('r').value.trim();
+  const b = document.getElementById('b').value.trim() || 'main';
+  if(!u || !r){ alert('先把用户名和仓库名填上'); return; }
+  localStorage.setItem('zg_u', u); localStorage.setItem('zg_r', r);
+  btn.disabled = true; btn.textContent = '正在测……';
+
+  const ctx = {u,r,b};
+  const out = await Promise.all(LINES.map(async ([code, desc, mk])=>{
+    const base = mk(ctx);
+    const res = await probe(base + PROBE, 12000);
+    return {code, desc, base, ...res};
+  }));
+  out.sort((a,c)=> (a.ok!==c.ok) ? (a.ok?-1:1) : a.dt-c.dt);
+
+  const tb = document.getElementById('tb'); tb.innerHTML = '';
+  out.forEach((o,i)=>{
+    const tr = document.createElement('tr');
+    if(o.ok && i===0) tr.className='best';
+    const cls = o.ok ? (o.warn?'w':'o') : 'x';
+    tr.innerHTML = `<td><b>${o.code}</b><div style="color:var(--dim);font-size:11px">${o.desc}</div></td>
+      <td><span class="pill ${cls}">${o.st}</span></td>
+      <td style="color:var(--dim)">${o.dt}ms</td>
+      <td><code>${o.base}${PROBE}</code></td>`;
+    tb.appendChild(tr);
+  });
+
+  const ok = out.filter(o=>o.ok);
+  document.getElementById('resCard').classList.remove('hide');
+  document.getElementById('note').innerHTML = ok.length
+    ? `✅ ${ok.length}/${LINES.length} 条通。<b>最快的：${ok[0].code}</b>（${ok[0].dt}ms）。<br>提示：这里显示「不通」不代表永远不通，镜像站时有波动，换一条就行。`
+    : `❌ 一条都没通。检查三件事：仓库是不是 <b>Public</b>、文件是不是已经 <b>push</b> 上去了、以及本机能不能打开 github.com。`;
+
+  if(ok.length){
+    const box = document.getElementById('addrs'); box.innerHTML='';
+    const order = ['okys-mirror','okys-full','okys-green','okys-best'];
+    const label = {'okys-mirror':'镜像多仓版（推荐·可切线路）','okys-full':'全能版（含成人源，排最后）',
+                   'okys-green':'绿源纯净版（无成人）','okys-best':'精选版（最快）'};
+    ok.slice(0,3).forEach(o=>{
+      order.forEach(cfg=>{
+        const url = `${o.base}${cfg}-${o.code}.json`;
+        const el = document.createElement('div'); el.className='addr';
+        el.innerHTML = `<div style="flex:1"><div style="font-size:12.5px;color:var(--dim)">${label[cfg]} · <b style="color:var(--fg)">${o.code}</b></div><code>${url}</code></div>
+          <button class="copy">复制</button>`;
+        el.querySelector('.copy').onclick = ()=>{
+          navigator.clipboard.writeText(url).then(()=>{
+            el.querySelector('.copy').textContent='已复制';
+            setTimeout(()=>el.querySelector('.copy').textContent='复制',1500);
+          });
+        };
+        box.appendChild(el);
+      });
+    });
+    // 壁纸
+    const w = document.createElement('div'); w.className='addr';
+    w.innerHTML = `<div style="flex:1"><div style="font-size:12.5px;color:var(--dim)">壁纸清单（挑一张填进 壳→设置→壁纸）</div><code>${ok[0].base}wall-${ok[0].code}.json</code></div>
+      <button class="copy">复制</button>`;
+    w.querySelector('.copy').onclick=()=>navigator.clipboard.writeText(`${ok[0].base}wall-${ok[0].code}.json`);
+    box.appendChild(w);
+    document.getElementById('addrCard').classList.remove('hide');
+  }
+  btn.disabled=false; btn.textContent='重新测速';
+};
+</script>
+</body>
+</html>

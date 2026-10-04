@@ -1,0 +1,14 @@
+{
+"站名": "多多影院app",
+"请求头": "手机",
+"主页url":"https://www.cdmeiji.com/",
+
+"搜索":"https://www.cdmeiji.com/so/?wd={wd}",
+    "搜索数组": "<a class=\"video-pic loading\"&&</ul>",
+    "搜索标题": "title=\"&&\"",
+    "搜索图片": "data-original=\"&&\"",
+    "搜索链接": "href=\"&&\"",
+"分类url":"https://www.cdmeiji.com/{cateId}/{class}_{area}_{year}__{catePg}.html",
+"分类":"电影$juji_jufilm#连续剧$juji_jutv#动漫$juji_judongman#综艺$juji_juvariety"
+
+}

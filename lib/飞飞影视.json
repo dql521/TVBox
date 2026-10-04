@@ -1,0 +1,12 @@
+{  "简介": "【老天师】提醒您请勿相信影片中的广告，以免上当受骗！+<p class=\"col-pd\">&&</p>",
+	 "站名": "飞飞影视",
+	 "数组":"<div class=\"stui-vodlist__box\">&&</div>",
+	 "标题":"title=\"&&\"",
+	 "副标题":"🐬老天师🐬+pic-text text-right\">&&</span>",
+	 "链接":"href=\"&&\"",
+	 "图片": "data-original=\"&&\"",
+	 "线路数组":"#playlist&&</li>",
+	 "线路标题":"🐬老天师接口🐬+>&&</a>",
+	 "分类url":"https://www.wanshunlogistics.com/show/{cateId}-{area}-{by}------{catePg}---{year}.html",  
+     "分类":"电影$1#电视剧$2#综艺$3#动漫$4"
+    }

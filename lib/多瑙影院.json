@@ -1,0 +1,21 @@
+{
+    "站名": "多瑙影院",
+    "时间": "20260306",
+    "请求头": "",
+	"主页url": "https://dnvod.org/",
+	"首页": "100",
+    "数组": "默认--<a&&</a>[包含:detail#src=]||首页--<a&&</span[包含:detail#src=]",
+    "图片": "src=\"&&\"",
+    "标题": "text-dark\">&&<",
+    "链接": "href=\"&&\"",
+
+	"搜索url": "https://dnvod.org/search?q={wd}&page={catePg}",
+    "搜索数组": "<a&&class=\"p[包含:detail#src=]",
+	"搜索图片": "src=\"&&\"",
+    "搜索标题": "text-dark\">&&<",
+    "搜索链接": "href=\"&&\"",
+	
+    "简介": "keywords\" content=\"&&\"",
+    "分类url": "https://dnvod.org/{cateId}/list/?year={year}&region={area}&page={catePg}",
+    "分类": "电视剧$tv#电影$movie#动漫$anime#综艺$show"
+}

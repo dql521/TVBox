@@ -1,0 +1,23 @@
+{
+
+    "作者": "20260306",
+    "站名": "拖布影视",  
+    "请求头": "",
+    "数组": "<a&&</a>[包含:vod/detail]",
+	"图片代理":"1",
+    "图片": "data-src=\"&&\"",
+    "标题": "title=\"&&\"",
+    "链接": "href=\"&&\"",
+	
+	"搜索url": "https://www.rainvi.com/index.php/vod/search/page/{catePg}/wd/{wd}.html",
+	
+    "线路数组": "=\"\\#\\#\"&&/a>",
+    "线路标题": "🦊专线+>&&<",
+	
+    "简介": "description\" content=\"&&\"",
+    "分类url": "https://www.rainvi.com/index.php/vod/show/id/{cateId}/page/{catePg}.html",
+    "分类": "电视剧$2#电影$1#动漫$4#综艺$3"
+}
+
+
+

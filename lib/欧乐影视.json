@@ -1,0 +1,39 @@
+{
+"站名": "欧乐影视",
+"请求头": "手机",
+"主页url":"https://ouletv.cc/",
+"数组": "vod-item\">&&</h3>",
+"图片": "data-original=\"&&\"",
+"标题":"<a href*>&&</a>",
+"副标题":"text-row-1\">&&</",
+//应该是提取第一个值
+"链接":"href=\"&&\"",
+"简介": "description\" content=\"&&>",
+
+"搜索":"https://ouletv.cc/tag/page/{catePg}/wd/{wd}/",
+"搜索模式":"1",
+
+//共n组,每一组都包括线路标题，提出即可
+"线路数组":"href=\"javascript&&</li>",
+"线路标题":">&&</",
+
+//播放二次截取//共n组，必须包括播放数组
+//共n组，每一组都包括全部集数和播放地址,在线路下方，一般只需要提取到此即可,下面基本不用填
+"播放数组":"<ul&&</ul>",
+//每集的参数，有地址或id等
+"播放列表": "<li&&</li>[包含:/freeplay/]",
+//标题需要在列表里找，如:第一集
+"播放标题": "href=*>&&</a",
+//播放链接每集里各自有自己的播放链接
+"播放链接": "href=\"&&\"",
+//播放链接不是完整的链接就必须用前缀
+"播放链接前缀": "https://ouletv.cc",
+        //必须有浏览器ua这个标识才能播放
+        //ua在这里获取https://tool.ip138.com/useragent/
+        //"播放请求头": "User-Agent$Mozilla/5.0",
+  //伦理片https://ouletv.cc/mov/lunlipian/
+"分类":"电影$dianying#连续剧$lianxuju#综艺$zongyi#动漫$dongman#短剧$shuangwenduanju",
+//下面的值每个网站不一样，应该是和网站一致
+"分类url": "https://ouletv.cc/video/{cateId}/area/{area}/class/{class}/page/{catePg}/year/{year}/"
+}
+

@@ -1,0 +1,13 @@
+{
+
+//常用域名www.freeok.mobi备用域名www.freeok.xyz
+"简介":"【老天师】提醒您请勿相信广告，以免上当！+description\" content=\"&&\">",  
+     
+"作者":"龙虎山老天师",
+"站名":"freeok，追剧也很卷",
+"主页url":"https://www.freeok.shop/",
+
+"分类": "电影&剧集&动漫&综艺&短剧&体育",
+"分类值": "1&2&3&4&12&13",
+"分类url": "https://www.freeok.shop/vod-show/{cateId}-{area}-{by}-{class}-----{catePg}---{year}.html"
+}

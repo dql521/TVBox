@@ -1,0 +1,34 @@
+	{
+	"站名": "🎈️CNN影视🎈",
+	"播放请求头": "User-Agent$Mozilla/5.0",
+	"二次截取": "videoList*[&&]",
+	"数组": "{&&}",
+	"图片": "https://obs.3688baihuo.com/+huo.com/&&\"",
+	"标题": "\"vodName\":\"&&\"",
+	"副标题": "vodRemarks\":\"(&&\"",
+	"链接": "\"vodId\":&&,",
+	"链接前缀": "https://m.shunhengdf.com/detail/",
+	"简介": "简介：&&\"",
+	
+	"搜索url": "https://m.shunhengdf.com/vod/search/{wd}",
+    "搜索副标题": "class=\"boottom\"*<div>&&</div",
+	
+    "线路数组": "<div class=\"player_name&&div>",
+    "线路标题": ">&&</",
+
+	"播放数组":"episodeList\":\\[&&\\][替换:nid\":>>nid\":/1/]",
+	"播放列表":"{&&}",
+	"播放标题":"name\":\"&&\"",
+
+	"播放链接前缀":"https://m.shunhengdf.com/vod/play/+data\":{\"vodId\":&&,",
+	"播放链接":"nid\":&&,",
+	"倒序":"0",
+	"跳转解析":"",
+	"跳转播放链接":"",
+    
+    "分类url":"https://m.shunhengdf.com/vod/show/id/{cateId}/class/{class}/area/{area}/year/{year}/page/{catePg}",
+    
+    "分类":"电影$1#电视剧$2#综艺$3#动漫$4"
+    
+
+}
